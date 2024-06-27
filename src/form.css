@@ -1,0 +1,18 @@
+.form{
+    width: 100%;
+    border: 2px solid grey;
+    padding: 2em;
+    border-radius: 5px;
+    background-color: black;
+}
+.form .form-cont{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.form .form-cont input{
+    margin: 1em 0;
+    padding: 10px;
+    outline: none;
+    border: none;
+}
