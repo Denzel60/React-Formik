@@ -1,16 +1,11 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Form from './form.jsx'
+import Form from './Form.jsx'
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Form />} />
-        </Routes>
-      </BrowserRouter>
+      <Form />
     </>
   )
 }
