@@ -69,18 +69,19 @@ function Form() {
             <div className='form-cont'>
                 <label htmlFor="firstName">Enter first name</label>
                 <input type="text" placeholder="Enter first name" id="firstName" name='firstName' value={formik.values.firstName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.touched.firstName && formik.errors.firstName && <div style={{ color: "red" }}>{formik.errors.firstName}</div>}
             </div>
             <div className='form-cont'>
                 <label htmlFor="lastName">Enter last name</label>
                 <input type="text" placeholder="Enter last name" id="lastName" name='lastName' value={formik.values.lastName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.touched.lastName && formik.errors.lastName && <div style={{ color: "red" }}>{formik.errors.lastName}</div>}
             </div>
             <div className='form-cont'>
                 <label htmlFor="email">Enter email</label>
                 <input type="email" placeholder="Enter email" id="email" name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.touched.email && formik.errors.email && <div style={{ color: "red" }}>{formik.errors.email}</div>}
             </div>
+            {formik.touched.firstName && formik.errors.firstName && <div style={{ color: "red" }}>{formik.errors.firstName}</div>}
+            {formik.touched.lastName && formik.errors.lastName && <div style={{ color: "red" }}>{formik.errors.lastName}</div>}
+            {formik.touched.email && formik.errors.email && <div style={{ color: "red" }}>{formik.errors.email}</div>}
+
             <button type='submit' disabled={disabled}>Submit</button>
         </form>
     )
