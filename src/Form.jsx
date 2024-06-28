@@ -1,8 +1,11 @@
 import './form.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useState } from 'react'
 
 function Form() {
+    const [disabled, setDisabled] = useState(true)
+
     const validatonSchema = Yup.object({
         firstName: Yup.string()
             .min(4, "First name must be at least 4 character")
@@ -31,27 +34,35 @@ function Form() {
 
         validationSchema: validatonSchema,
 
-        // validate: (formValues) => {
-        //     let errors = {};
+        validate: (formValues) => {
 
-        //     if (formValues.firstName === "") {
-        //         errors.firstName = "First name is required"
-        //     } else if (formValues.firstName.length < 4) {
-        //         errors.firstName = "First name must be at least 8 characters"
-        //     }
+            if (!formValues.firstName && !formValues.lastName && !formValues.email) {
+                setDisabled(true)
+            } else {
+                setDisabled(false)
+            }
 
-        //     if (formValues.lastNamestName === "") {
-        //         errors.lastName = "Last name is required"
-        //     } else if (formValues.lastName.length < 4) {
-        //         errors.lastName = "Last name must be at least 8 characters"
-        //     }
 
-        //     if (formValues.email === "") {
-        //         errors.email = "email is required"
-        //     }
+            // let errors = {};
 
-        //     return errors
-        // },
+            // if (formValues.firstName === "") {
+            //     errors.lastName = "First name is required" 
+            // } else if (formValues.lastName.length < 4){
+            //     errors.lastName = "Last name must be at least 8 characters"
+            // }
+
+            // if (formValues.lastNamestName === "") {
+            // errors.lastName = "Last name is required"
+            // } else if (formValues.lastName.length < 4) {
+            // errors.lastName = "Last name must be at least 8 characters"
+            // }
+
+            // if (formValues.email === "") {
+            // errors.email = "email is required"
+            // }
+
+            // return errors
+        },
     })
     return (
         <form className='form' onSubmit={formik.handleSubmit}>
@@ -70,7 +81,7 @@ function Form() {
                 <input type="email" placeholder="Enter email" id="email" name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.touched.email && formik.errors.email && <div style={{ color: "red" }}>{formik.errors.email}</div>}
             </div>
-            <button type='submit'>Submit</button>
+            <button type='submit' disabled={disabled}>Submit</button>
         </form>
     )
 }
