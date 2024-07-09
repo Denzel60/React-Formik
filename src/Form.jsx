@@ -2,9 +2,12 @@ import './form.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useState } from 'react'
+import useUsernameStore from './useStore'
 
 function Form() {
     const [disabled, setDisabled] = useState(true)
+    const captureUser = useUsernameStore((state) => state.captureUser)
+    const user = useUsernameStore(state => state.user)
 
     const validatonSchema = Yup.object({
         firstName: Yup.string()
@@ -29,7 +32,8 @@ function Form() {
             email: ""
         },
         onSubmit: (formState) => {
-            console.log(formState)
+            captureUser(formState)
+            console.log(user)
         },
 
         validationSchema: validatonSchema,
